@@ -27,6 +27,21 @@ def hanoi(N, A, B, C):
 #   Time Complexity: O(2^N - 1)
 #   Space Complexity: O(N)  
 
+# import time complexity by usning memoization
+def hanoi_iterative(N, A, B, C):
+    stack = [(N, A, B, C)]  # Stack to simulate recursion
+    moves = []
+    while stack:
+        N, A, B, C = stack.pop()
+        if N == 0:
+            continue
+        # Push calls onto the stack in reverse order (to simulate recursion)
+        stack.append((N - 1, B, A, C))  # Move N-1 from B to C using A
+        moves.append(f"Move disk {N} from {A} to {C}")  # Move largest disk
+        stack.append((N - 1, A, C, B))  # Move N-1 from A to B using C
+    return moves
+#   Time Complexity: O(2^N - 1)
+#   Space Complexity: O(N)  
 
 
 # test the function
